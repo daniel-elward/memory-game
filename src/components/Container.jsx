@@ -1,7 +1,8 @@
-import Card from "./Card";
+import { useState } from "react";
+import CardMemo from "./Card";
 
 //shuffle function used from stack overflow post
-function shuffle(array) {
+export function shuffle(array) {
   let currentIndex = array.length;
 
   // While there remain elements to shuffle...
@@ -18,16 +19,27 @@ function shuffle(array) {
   }
 }
 
-export default function Container() {
+export function Container() {
   const cards = ["red", "green", "orange", "yellow", "blue", "pink", "grey"];
+  const [score, setScore] = useState(0);
+
+  const handleClick = () => {
+    setScore((prev) => prev + 1);
+  };
 
   shuffle(cards);
 
   return (
-    <div className="cardContainer">
-      {cards.map((cards) => {
-        return <Card key={cards} color={cards} />;
-      })}
-    </div>
+    <>
+      <div className="counter">
+        <p>current score: {score}</p>
+      </div>
+
+      <div className="cardContainer">
+        {cards.map((cards) => {
+          return <CardMemo key={cards} color={cards} onClick={handleClick} />;
+        })}
+      </div>
+    </>
   );
 }
