@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CardMemo from "./Card";
+import Card from "./Card";
 
 //shuffle function used from stack overflow post
 export function shuffle(array) {
@@ -37,7 +37,7 @@ export function Container() {
 
       <div className="cardContainer">
         {cards.map((cards) => {
-          return <CardMemo key={cards} color={cards} onClick={handleClick} />;
+          return <Card key={cards} color={cards} onClick={handleClick} />;
         })}
       </div>
     </>
