@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card";
 import getImages from "../api";
 
@@ -21,18 +21,21 @@ export function shuffle(array) {
 }
 
 export function Container() {
-  const apiResult = getImages();
-  const imageArray = [];
-  const cards = ["red", "green", "orange", "yellow", "blue", "pink", "grey"];
   const [score, setScore] = useState(0);
+  const [organisedData, setOrganisedData] = useState([]);
+  const cards = ["red", "green", "orange", "yellow", "blue", "pink", "grey"];
 
   const handleClick = () => {
     setScore((prev) => prev + 1);
   };
 
-  imageArray.push(apiResult);
-  console.log(imageArray);
-  shuffle(cards);
+  useEffect(() => {
+    getImages().then((data) => {
+      setOrganisedData(data);
+    });
+  }, []);
+
+  shuffle(organisedData);
 
   return (
     <>
@@ -41,8 +44,8 @@ export function Container() {
       </div>
 
       <div className="cardContainer">
-        {cards.map((cards) => {
-          return <Card key={cards} color={cards} onClick={handleClick} />;
+        {organisedData.map((url, index) => {
+          return <Card key={index} bgUrl={url} onClick={handleClick} />;
         })}
       </div>
     </>

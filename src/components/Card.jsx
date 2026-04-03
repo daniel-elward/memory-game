@@ -1,10 +1,13 @@
-import React from "react";
-import { useState, memo } from "react";
+import { useState } from "react";
 
-export default function Card({ color, onClick }) {
+export default function Card({ bgUrl, onClick }) {
   const [counter, setCounter] = useState(0);
   const buttonStyle = {
-    backgroundColor: color,
+    backgroundImage: `url(${bgUrl})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    width: "200px",
+    height: "200px",
   };
 
   const clickHandler = () => {
