@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "./Card";
+import getImages from "../api";
 
 //shuffle function used from stack overflow post
 export function shuffle(array) {
@@ -20,6 +21,8 @@ export function shuffle(array) {
 }
 
 export function Container() {
+  const apiResult = getImages();
+  const imageArray = [];
   const cards = ["red", "green", "orange", "yellow", "blue", "pink", "grey"];
   const [score, setScore] = useState(0);
 
@@ -27,6 +30,8 @@ export function Container() {
     setScore((prev) => prev + 1);
   };
 
+  imageArray.push(apiResult);
+  console.log(imageArray);
   shuffle(cards);
 
   return (
