@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Card from "./Card";
-import getImages from "../api";
 
 //shuffle function used from stack overflow post
 export function shuffle(array) {
@@ -22,20 +21,33 @@ export function shuffle(array) {
 
 export function Container() {
   const [score, setScore] = useState(0);
-  const [organisedData, setOrganisedData] = useState([]);
-  const cards = ["red", "green", "orange", "yellow", "blue", "pink", "grey"];
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const apiUrl = "https://thesimpsonsapi.com/api/characters";
+  const baseUrl = "https://cdn.thesimpsonsapi.com/200";
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setImages(data.results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading ...</p>;
+  }
 
   const handleClick = () => {
     setScore((prev) => prev + 1);
   };
 
-  useEffect(() => {
-    getImages().then((data) => {
-      setOrganisedData(data);
-    });
-  }, []);
-
-  shuffle(organisedData);
+  shuffle(images);
 
   return (
     <>
@@ -44,10 +56,18 @@ export function Container() {
       </div>
 
       <div className="cardContainer">
-        {organisedData.map((url, index) => {
-          return <Card key={index} bgUrl={url} onClick={handleClick} />;
+        {images.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              imageUrl={baseUrl + item.portrait_path}
+              onClick={handleClick}
+            />
+          );
         })}
       </div>
     </>
   );
 }
+
+// 424 & 485

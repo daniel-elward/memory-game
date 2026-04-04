@@ -1,14 +1,7 @@
 import { useState } from "react";
 
-export default function Card({ bgUrl, onClick }) {
+export default function Card({ imageUrl, onClick }) {
   const [counter, setCounter] = useState(0);
-  const buttonStyle = {
-    backgroundImage: `url(${bgUrl})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "200px",
-    height: "200px",
-  };
 
   const clickHandler = () => {
     setCounter((prev) => prev + 1);
@@ -17,7 +10,16 @@ export default function Card({ bgUrl, onClick }) {
 
   return (
     <>
-      <button onClick={clickHandler} style={buttonStyle} className="card">
+      <button
+        onClick={clickHandler}
+        className="card"
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "200px",
+          height: "200px",
+        }}>
         {counter}
       </button>
 

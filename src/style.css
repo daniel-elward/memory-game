@@ -2,5 +2,7 @@ button {
   width: 150px;
   height: 150px;
   border: none;
-  /* background-color: blue; */
+  color: red;
+  font-size: 4em;
+  font-weight: bolder;
 }

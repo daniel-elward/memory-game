@@ -1,6 +1,6 @@
-const organisedData = [];
+let organisedData = [];
 
-export default async function getImages() {
+async function getImages() {
   try {
     const response = await fetch("https://thesimpsonsapi.com/api/characters");
     const data = await response.json();
@@ -12,12 +12,10 @@ export default async function getImages() {
         `https://cdn.thesimpsonsapi.com/200${rawData[i].portrait_path}`,
       );
     }
-
-    console.log(organisedData);
-    return organisedData;
   } catch (error) {
     console.error(error);
   }
 }
 
-getImages();
+// export default organisedData;
+export default getImages;
