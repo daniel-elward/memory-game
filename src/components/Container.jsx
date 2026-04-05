@@ -75,7 +75,7 @@ export function Container() {
         <EndGame
           score={score}
           heading="You win, Woo-Hoo!"
-          message="You should speak with Professor John Frink, I'm sure he could you someone with your brain power!"
+          message="You should speak with Professor John Frink, I'm sure he could use someone with your brain power!"
         />
       )}
     </>
