@@ -1,5 +1,6 @@
 import { useState, useEffect, Suspense } from "react";
 import Card from "./Card";
+import EndGame from "./GameEnd";
 
 //shuffle function used from stack overflow post
 export function shuffle(array) {
@@ -25,12 +26,14 @@ export function Container() {
   const [loading, setLoading] = useState(true);
   const apiUrl = "https://thesimpsonsapi.com/api/characters";
   const baseUrl = "https://cdn.thesimpsonsapi.com/200";
+  const imageCount = 13; //set thumbnail count
 
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        setImages(data.results);
+        const prunedData = data.results.slice(0, imageCount); //limit the results from the api
+        setImages(prunedData);
         setLoading(false);
       })
       .catch((error) => {
@@ -62,12 +65,19 @@ export function Container() {
               key={item.id}
               imageUrl={baseUrl + item.portrait_path}
               onClick={handleClick}
+              score={score}
             />
           );
         })}
       </div>
+
+      {score === imageCount && (
+        <EndGame
+          score={score}
+          heading="You win, Woo-Hoo!"
+          message="You should speak with Professor John Frink, I'm sure he could you someone with your brain power!"
+        />
+      )}
     </>
   );
 }
-
-// 424 & 485

@@ -1,8 +1,138 @@
-button {
+html {
+  background-image: url("./assets/cloud-background.png");
+  background-repeat: repeat;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Rock Salt", cursive;
+}
+
+.header h1 {
+  font-size: 4em;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.header h2 {
+  font-size: 2.4em;
+  padding: 0px;
+  margin: 0;
+}
+
+.header {
+  text-align: center;
+  font-family: "Rock Salt", cursive;
+  color: rgb(255, 240, 35);
+  -webkit-text-stroke: 0.005em black;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.counter {
+  max-width: 300px;
+  min-width: 160px;
+  margin: 10px auto;
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  /* border: 5px solid rgb(240, 226, 33); */
+}
+
+/* card is styling a button element */
+.card {
   width: 150px;
   height: 150px;
-  border: none;
+  margin: 10px;
+  background-size: contain;
+  background-position: center;
+  border: 5px solid rgb(255, 240, 35);
+
   color: red;
   font-size: 4em;
   font-weight: bolder;
+}
+
+.modal {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: white;
+  border: 2px solid rgb(255, 240, 35);
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 100px 0 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.closeBtn {
+  width: auto;
+  height: auto;
+  color: black;
+  padding: 10px 15px;
+}
+
+.simpsonsHighlight {
+  display: inline;
+  font-family: "Rock Salt", cursive;
+}
+
+.helpBtn {
+  font-size: 2.5em;
+  font-weight: bolder;
+  background-color: rgb(255, 240, 35);
+}
+
+@media (max-width: 550px) {
+  .header h1 {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+  }
+
+  .header h2 {
+    font-size: 1.4em;
+    padding: 0px;
+    margin: 0;
+  }
+
+  .header {
+    text-align: center;
+    font-family: "Rock Salt", cursive;
+    color: rgb(255, 240, 35);
+    -webkit-text-stroke: 0.005em black;
+  }
+
+  .counter {
+    max-width: 150px;
+    min-width: 100px;
+    background-color: white;
+    text-align: center;
+    border: 2px solid black;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

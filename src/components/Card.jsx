@@ -1,6 +1,7 @@
 import { useState } from "react";
+import EndGame from "./GameEnd";
 
-export default function Card({ imageUrl, onClick }) {
+export default function Card({ imageUrl, onClick, score }) {
   const [counter, setCounter] = useState(0);
 
   const clickHandler = () => {
@@ -15,15 +16,18 @@ export default function Card({ imageUrl, onClick }) {
         className="card"
         style={{
           backgroundImage: `url(${imageUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "200px",
-          height: "200px",
         }}>
-        {counter}
+        {/* click display for dev purposes */}
+        {/* {counter} */}
       </button>
 
-      {counter > 1 && alert("game over bitch")}
+      {counter > 1 && (
+        <EndGame
+          score={score}
+          heading="D'oh! You lose, better luck next time"
+          message="Even Abe has better memory than you!"
+        />
+      )}
     </>
   );
 }
