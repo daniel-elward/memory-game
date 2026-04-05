@@ -26,7 +26,7 @@ export function Container() {
   const [loading, setLoading] = useState(true);
   const apiUrl = "https://thesimpsonsapi.com/api/characters";
   const baseUrl = "https://cdn.thesimpsonsapi.com/200";
-  const imageCount = 13; //set thumbnail count
+  const imageCount = 15; //set thumbnail count
 
   useEffect(() => {
     fetch(apiUrl)
